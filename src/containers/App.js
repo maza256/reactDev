@@ -26,8 +26,7 @@ function App() {
                 setTitle("CatFriends")
             }
             document.title = title
-
-    },[type])
+    },[type, title])
 
     const onSearchChange = (event) => {
         setSearchField(  event.target.value)
