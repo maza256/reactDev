@@ -8,7 +8,7 @@ import ErrorBoundary from '../components/ErrorBoundary';
 function App() {
     const [ robots, setRobots] = useState([]);
     const [ searchfield, setSearchField] = useState('');
-    const [ date ] = useState(new Date());
+    const [ date, setTime ] = useState(new Date());
     const [ type, setType ] = useState(0);
     const [ title, setTitle ] = useState("RoboFriends")
     
@@ -26,7 +26,16 @@ function App() {
                 setTitle("CatFriends")
             }
             document.title = title
+            date.setTime(new Date().getTime());
     },[type, title])
+
+    useEffect(() => {
+        const interval = setInterval(() => setTime(new Date()), 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
     const onSearchChange = (event) => {
         setSearchField(  event.target.value)
